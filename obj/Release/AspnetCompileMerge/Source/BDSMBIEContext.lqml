@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="BDSystemSMBIE" EntityNamespace="BDSystemSMBIEContext" ContextNamespace="BDSystemSMBIEContext" Class="BDSystemSMBIEDataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="bb774858-be5c-42d1-8f39-2f67ddcc412c" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=BDSystemSMBIE.mssql.somee.com;Initial Catalog=BDSystemSMBIE;Integrated Security=False;Persist Security Info=True;User ID=Flatren123_SQLLogin_1;Password=lacyd1qla2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BSLink" Member="BSLinks">
+    <Type Name="BSLink" ed:Guid="591e32d4-786c-448c-b813-b14dac60ea95">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="7ac05cfe-4b67-4698-ab55-ba8c1355056a" />
+      <Column Name="id_Record" Member="IdRecord" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="181d0766-47a8-4f99-99ae-a80ea8db3a91" />
+      <Column Name="id_file" Member="IdFile" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="ae10e715-1ebf-4dcd-a647-63351526be17" />
+      <Column Name="private" Member="Private" Type="System.String" DbType="CHAR(1)" CanBeNull="true" UpdateCheck="Always" FixedLength="true" MaxLength="1" ed:ValidateMaxLength="1" ed:ValidateRequired="false" ed:Guid="4631878d-d897-487e-80aa-29f55c6307bf" />
+      <Column Name="DataJson" Type="System.String" DbType="NVARCHAR(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Always" Unicode="true" ed:ValidateRequired="true" ed:Guid="668f953c-74e0-42aa-8a18-569d0bd84535" />
+      <Association Name="Document_BSLink" ed:AssociationGuid="1ab470e6-8458-4655-8d63-43be3aafec4e" Member="Document" ed:Guid="292b1b19-04ff-4c67-9ee2-838176281828" ThisKey="IdFile" OtherKey="Id" Type="Document" DeleteRule="SET NULL" IsForeignKey="true" />
+      <Association Name="TypeRecord_BSLink" ed:AssociationGuid="cc351379-b306-4a4c-bb90-316fdc20e788" Member="TypeRecord" ed:Guid="e724e326-4bd3-4344-943b-8f5cabbc5fd8" ThisKey="IdRecord" OtherKey="Id" Type="TypeRecord" DeleteRule="CASCADE" IsForeignKey="true" />
+      <Association Name="BSLink_FolderFile" ed:AssociationGuid="2d6420b1-70ca-4932-84ba-ae3cba1321d1" Member="FolderFiles" ed:Guid="d4dadb4f-63d6-46e8-b80e-5a3d5a79a254" ThisKey="Id" OtherKey="IdBSlink" Type="FolderFile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Department" Member="Departments">
+    <Type Name="Department" ed:Guid="3863f0e4-2961-4b80-833c-e748b0e4957f">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="075fd5ab-3bf4-4a75-bebf-64146916398e" />
+      <Column Name="id_type" Member="IdType" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="83ed754d-4b07-498c-91fe-f28bc41fb657" />
+      <Column Name="Name" Type="System.String" DbType="NVARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="2d7ecd80-0d6a-40e6-b899-f32e1bcbdd4e" />
+      <Column Name="Description" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" UpdateCheck="Always" Unicode="true" ed:ValidateRequired="false" ed:Guid="05beb4c0-ab77-4064-a0b4-9ebd6b4f26db" />
+      <Column Name="id_user_head" Member="IdUserHead" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="0b940424-1dbf-4625-99b1-6be652bece04" />
+      <Column Name="id_parent_dep" Member="IdParentDep" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="d29e17d9-ce57-4f6c-b5d4-d6e1d739d1f1" />
+      <Association Name="TypeDepartment_Department" ed:AssociationGuid="51f5ccbd-d4ed-49ee-bcbc-bf0eade884f1" Member="TypeDepartment" ed:Guid="179d71c1-cfd4-487b-b181-dbcf8bf9242c" ThisKey="IdType" OtherKey="Id" Type="TypeDepartment" DeleteRule="CASCADE" IsForeignKey="true" />
+      <Association Name="Department_User" ed:AssociationGuid="c91c032b-8b3e-44e4-86f8-f30982082f79" Member="Users" ed:Guid="fd7d449f-8727-43d2-9ed8-4b505cbb06cb" ThisKey="Id" OtherKey="IdDep" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Document" Member="Documents">
+    <Type Name="Document" ed:Guid="05f08409-e1cd-4db1-a25a-80d0e2594ff2">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="62213aa6-0be0-43fe-b688-3401b4c7f793" />
+      <Column Name="DataFile" Type="System.Byte[]" DbType="VARBINARY(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="011929bc-73e2-4a75-b0dd-af291c86abff" />
+      <Column Name="Name" Type="System.String" DbType="NVARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="d40ad737-f774-4833-8298-13ed406084b9" />
+      <Association Name="Document_BSLink" ed:AssociationGuid="1ab470e6-8458-4655-8d63-43be3aafec4e" Member="BSLinks" ed:Guid="2a1c4a06-1a10-487d-8ab7-ca2c23260385" ThisKey="Id" OtherKey="IdFile" Type="BSLink" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Folder" Member="Folders">
+    <Type Name="Folder" ed:Guid="683b422c-369d-4b99-8080-608cfd4e334d">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="0da5c261-c7fc-4f04-83d9-d7b83ba107c3" />
+      <Column Name="Id_parent" Member="IdParent" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="9bf06bae-6a8b-4a13-82ed-7e0d4a45aa98" />
+      <Column Name="Name" Type="System.String" DbType="NVARCHAR(256)" CanBeNull="true" UpdateCheck="Always" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="e9a03d96-d0b6-4d4f-a0b0-e4f5047e2e79" />
+      <Association Name="Folder_FolderFile" ed:AssociationGuid="b55084bb-b013-466c-a577-99cfada60cd3" Member="FolderFiles" ed:Guid="f453a3f2-3fda-4c36-bc9d-61c021b284cd" ThisKey="Id" OtherKey="IdFolder" Type="FolderFile" />
+      <Association Name="Folder_User" ed:AssociationGuid="0129768e-5628-4bb0-9810-716734c7a881" Member="Users" ed:Guid="7a6cd074-0c14-4ad1-90bd-1e60f585536b" ThisKey="Id" OtherKey="IdMainFolder" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FolderFile" Member="FolderFiles">
+    <Type Name="FolderFile" ed:Guid="4eb1877d-a4c6-4743-808e-0b3f5a6d25fd">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="be46f269-0009-40ba-9530-fd763fb427c8" />
+      <Column Name="id_folder" Member="IdFolder" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="dbafa9d9-8ded-4b4e-a5b1-f3488bb60690" />
+      <Column Name="id_BSlink" Member="IdBSlink" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="44bcf73a-cd0e-4a3c-9f99-eb260fc72ded" />
+      <Association Name="BSLink_FolderFile" ed:AssociationGuid="2d6420b1-70ca-4932-84ba-ae3cba1321d1" Member="BSLink" ed:Guid="ce81fd28-93a9-4156-b036-5ad08652acff" ThisKey="IdBSlink" OtherKey="Id" Type="BSLink" DeleteRule="CASCADE" IsForeignKey="true" />
+      <Association Name="Folder_FolderFile" ed:AssociationGuid="b55084bb-b013-466c-a577-99cfada60cd3" Member="Folder" ed:Guid="59572c18-77be-492b-9f7e-dcfec049afff" ThisKey="IdFolder" OtherKey="Id" Type="Folder" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Position" Member="Positions">
+    <Type Name="Position" ed:Guid="e501da8e-87e1-4ad2-9f9f-0893cd9219c4">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="5469f107-48c0-4ad4-9555-a110a019fe7a" />
+      <Column Name="Name" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="ba904bfb-d8fc-49bc-83bc-435c0fbcfa0d" />
+      <Column Name="Rang" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="2fa5b0ed-7136-48f2-be90-a242f601a591" />
+      <Column Name="Description" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" UpdateCheck="Always" MaxLength="500" Unicode="true" ed:ValidateMaxLength="500" ed:ValidateRequired="false" ed:Guid="dce2a9a9-e9a3-4d4d-8e05-089cc55055bc" />
+      <Association Name="Position_TypeDepartment" ed:AssociationGuid="b13a21fb-0ed0-482c-bb11-a5d3dc744d4c" Member="TypeDepartments" ed:Guid="8ad2b171-e3c4-4183-98ba-e56c4946e85b" ThisKey="Id" OtherKey="RuleIdPosition" Type="TypeDepartment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RecordFields" Member="RecordFields">
+    <Type Name="RecordField" ed:Guid="863135be-7abd-4dba-85d7-e1e1931144ca">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="280fd60a-f0eb-431a-9fe2-ce26b2f53ab3" />
+      <Column Name="Name" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="b519c6ad-e85c-482b-82b7-712cfba41470" />
+      <Column Name="Description" Type="System.String" DbType="NVARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="b01ef97d-ab3d-4de5-abf4-13759a066bc1" />
+      <Column Name="Sysname" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="2081273d-c82f-4b7e-a8a5-45031a479bd4" />
+      <Association Name="RecordField_Relationship" ed:AssociationGuid="1fc36e7f-cb93-462f-a889-9cddb5c24c30" Member="Relationships" ed:Guid="261ea768-4db7-4a2a-9cfa-e073649dcf19" ThisKey="Id" OtherKey="IdField" Type="Relationship" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Relationship" Member="Relationships">
+    <Type Name="Relationship" ed:Guid="272a64b4-67cc-4e7b-8881-d6d07a7859f5">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="dc8bf7b7-f32b-4660-80f5-527febd2a716" />
+      <Column Name="Id_field" Member="IdField" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="fc62b8dc-8dd8-4dc8-80e8-ff6f692e48af" />
+      <Column Name="Id_type" Member="IdType" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="33964918-5e10-4117-baae-2819f44c92ac" />
+      <Column Name="typefielder" Member="Typefielder" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="796a2ed2-d1e5-405b-9d8b-5d20f95e0113" />
+      <Association Name="RecordField_Relationship" ed:AssociationGuid="1fc36e7f-cb93-462f-a889-9cddb5c24c30" Member="RecordField" ed:Guid="f6534e76-628a-4ed6-b4e3-4b184da3436e" ThisKey="IdField" OtherKey="Id" Type="RecordField" DeleteRule="CASCADE" IsForeignKey="true" />
+      <Association Name="TypeRecord_Relationship" ed:AssociationGuid="379b5c04-2b75-4327-9b0f-010b26f1b6a2" Member="TypeRecord" ed:Guid="0b077ff2-546e-43e4-904f-5d2f96d1a521" ThisKey="IdType" OtherKey="Id" Type="TypeRecord" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TypeDepartment" Member="TypeDepartments">
+    <Type Name="TypeDepartment" ed:Guid="ee1cc25a-dcf9-477c-8b8d-db56af9613ec">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="c2c9c3b8-dd01-4090-8982-565dff466d16" />
+      <Column Name="Name" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="4498dbfd-ade1-4ab1-ad76-377c1c1bfaaa" />
+      <Column Name="Description" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" UpdateCheck="Always" Unicode="true" ed:ValidateRequired="false" ed:Guid="1b64db13-0698-45e4-82ec-edeb0d7334e5" />
+      <Column Name="RuleIdPosition" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="f7c2e2db-b5b2-4756-aa6c-570aab186c8d" />
+      <Column Name="id_parent" Member="IdParent" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="aaec789b-120d-42c3-a64c-76145bb136c5" />
+      <Association Name="TypeDepartment_Department" ed:AssociationGuid="51f5ccbd-d4ed-49ee-bcbc-bf0eade884f1" Member="Departments" ed:Guid="1f887f00-1274-48f5-aa2c-3ffddcc73835" ThisKey="Id" OtherKey="IdType" Type="Department" />
+      <Association Name="Position_TypeDepartment" ed:AssociationGuid="b13a21fb-0ed0-482c-bb11-a5d3dc744d4c" Member="Position" ed:Guid="a0f297fe-649d-42f3-bb12-eff26fe1b15d" ThisKey="RuleIdPosition" OtherKey="Id" Type="Position" DeleteRule="SET NULL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TypeRecords" Member="TypeRecords">
+    <Type Name="TypeRecord" ed:Guid="257d3764-cfd0-4599-94fb-209b2c997013">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="9407ff90-5c92-4262-99cd-e30e738605f8" />
+      <Column Name="Name" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="4a478a4a-5f41-4bd1-996c-257382b47330" />
+      <Column Name="Description" Type="System.String" DbType="NVARCHAR(256) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="f7bdd941-bd99-479d-bf76-0454464ba0ee" />
+      <Column Name="Sysname" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="392e6e9a-6293-4601-b633-c7bcf26205d4" />
+      <Association Name="TypeRecord_BSLink" ed:AssociationGuid="cc351379-b306-4a4c-bb90-316fdc20e788" Member="BSLinks" ed:Guid="bfb561e7-2bb5-45c3-9257-9487e30525e3" ThisKey="Id" OtherKey="IdRecord" Type="BSLink" />
+      <Association Name="TypeRecord_Relationship" ed:AssociationGuid="379b5c04-2b75-4327-9b0f-010b26f1b6a2" Member="Relationships" ed:Guid="feb0eb70-49b7-41e6-8958-d11b22726cbd" ThisKey="Id" OtherKey="IdType" Type="Relationship" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User" ed:Guid="0f446a7c-ecde-4c44-85ff-72c0097f997b">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="d9dd9da0-0288-472a-83c6-626a092d07b2" />
+      <Column Name="FIO" Type="System.String" DbType="NVARCHAR(250) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="250" Unicode="true" ed:ValidateMaxLength="250" ed:ValidateRequired="true" ed:Guid="9aa918ca-1601-4fee-9a8e-a3d00916daa5" />
+      <Column Name="id_Main_Folder" Member="IdMainFolder" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="10eecc41-2bfa-4d70-9c71-0292559da48f" />
+      <Column Name="Phone" Type="System.String" DbType="NVARCHAR(11) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="11" Unicode="true" ed:ValidateMaxLength="11" ed:ValidateRequired="true" ed:Guid="a5588d6a-2046-4bee-afed-8f1917b30bd6" />
+      <Column Name="Character" Type="System.String" DbType="NVARCHAR(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Always" Unicode="true" ed:ValidateRequired="true" ed:Guid="4aa7f42d-49eb-45da-baf4-e073e3582343" />
+      <Column Name="Login" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="08c5e7bf-b50c-47b0-8593-2959cba362b7" />
+      <Column Name="Password" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="33b0a9bb-3d4e-4c44-811d-dfc2cadc3b63" />
+      <Column Name="Token" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" UpdateCheck="Always" Unicode="true" ed:ValidateRequired="false" ed:Guid="b19406ab-3d2b-4066-acfe-1e7034023807" />
+      <Column Name="datatime" Member="Datatime" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" UpdateCheck="Always" ed:ValidateRequired="false" ed:Guid="1e24b6b3-c2fc-41c4-a019-d0c75cf2e2f5" />
+      <Column Name="id_dep" Member="IdDep" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="5d58771a-0ef0-430d-96ee-9bfa730c3150" />
+      <Association Name="Department_User" ed:AssociationGuid="c91c032b-8b3e-44e4-86f8-f30982082f79" Member="Department" ed:Guid="ff70c487-d5a3-430e-b328-5029e9a4de80" ThisKey="IdDep" OtherKey="Id" Type="Department" DeleteRule="SET NULL" IsForeignKey="true" />
+      <Association Name="Folder_User" ed:AssociationGuid="0129768e-5628-4bb0-9810-716734c7a881" Member="Folder" ed:Guid="fc66d1c4-ab25-4b56-87d2-dbc8d7ebc371" ThisKey="IdMainFolder" OtherKey="Id" Type="Folder" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
